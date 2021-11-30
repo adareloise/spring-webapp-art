@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/service :: head"></head>
+
+<body>
+
+	<header th:replace="fragments/service :: header"></header>
+
+	<div class="container py-4">
+		<br><br><br>
+		<div class="card bg-danger text-white">
+			<div class="card-header">Error: Página no encontrada</div>
+			<div class="card-body">
+				<div th:text="${error}"></div>
+				<div th:text="${status}"></div>
+				<div th:text="${timestamp}"></div>
+
+				<a th:href="@{/}" class="btn btn-outline-light" role="button">Ir
+					al inicio</a>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+</html>

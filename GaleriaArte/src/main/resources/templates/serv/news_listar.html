@@ -1,0 +1,66 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/service :: head">
+</head >
+
+<body>
+	<!-- Menu -->
+	<header th:replace="fragments/service :: menu"></header>
+
+	<div class="container py-4">
+		<br><br><br>
+
+		<div class="card bg-light">
+
+			<div class="card-header" th:text="${titulo}"></div>
+
+			<div class="card-body">
+				<div th:replace="fragments/status :: s_status"></div>
+
+				<div class="card-title">
+					<p><a th:href="@{/news/create}" class="btn btn-success btn-xs">crear noticia</a></p>
+				</div>
+
+				<table id="table_id" class="display">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Titulo</th>
+							<th>Introduccion</th>
+							<th>Fecha</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="noticia: ${noticias}">
+							<td><a class="btn btn-primary btn-xs" th:href="@{/news/object/} + ${noticia.id}"
+									th:text="${noticia.id}"></a></td>
+							<td th:text="${noticia.titulo}"></td>
+							<td th:text="${noticia.introduccion}"></td>
+							<td th:text="${noticia.fecha}"></td>
+							<td>
+								<a th:href="@{/news/edit/}+ ${noticia.id}">
+									<img th:src="@{/img/icons/editar.png}" class="img-responsive img-circle margin"
+										style="display:inline" alt="editar" width="30" height="30">
+								</a>
+								<a class="confirmation" th:href="@{/news/delete/}+ ${noticia.id}">
+									<img th:src="@{/img/icons/eliminar.png}" class="img-responsive img-circle margin"
+										style="display:inline" alt="Robot" width="30" height="30">
+								</a>
+							</td>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer th:replace="fragments/service :: footer"></footer>
+
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+	<script th:src="@{/js/listar_dtable.js}"></script>
+
+</body>
+
+</html>

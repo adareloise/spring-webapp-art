@@ -1,0 +1,93 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title th:text="${titulo}"></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+	<div class="container py-4" th:fragment="post">
+		<br><br><br>
+		<div class="card">
+	
+			<div class="card bg-light">
+				<div class="card-header">
+					<h1 class="text-center" th:text="${titulo}"></h1 >
+				</div>
+
+			<div class="card-body">
+				<div class="text-center">
+
+					<img th:if="${#strings.length(noticia.foto) > 0}" class="rounded mx-auto d-block"
+						style="max-width: 80%;" th:src="@{'/news/uploads/' + ${noticia.foto}}"
+						th:alt="${noticia.foto}" />
+
+					<br>
+					<p class="fs-15 d-flex justify-content-center align-items-center m-0" th:text="${noticia.fecha}">
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<h3 class="pt-4 pb-4" th:text="${noticia.introduccion}"></h3>
+		</div>
+
+		<div class="news-post-wrapper-sm ">
+			<div class="row justify-content-center">
+				<div class="col-4">
+					<div class="embed-responsive embed-responsive-16by9">
+						<iframe class="embed-responsive-item" th:src="@{'https://www.youtube.com/embed/'+ ${noticia.link_video}}"  
+							allowfullscreen></iframe>
+					</div>
+				</div>
+				<div class="col-4">
+					<p class="pt-4 pb-4 mb-4 text-center" th:text="${noticia.redaccion}"></p>
+				</div>
+
+				<div class="bg-dark border-radius-6 px-4 py-3 mt-4">
+					<p class="text-white font-weight-medium text-center" th:text="${noticia.conclusion}"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div class="container" th:fragment="list">
+
+		<div class="border-top py-5">
+			<h1 class="text-center">Lista de Noticias</h1>
+		</div>
+
+		<div class="border-top py-5" th:each="noticia: ${noticias}">
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="position-relative image-hover">
+
+						<img th:if="${#strings.length(noticia.foto) > 0}" class="rounded mx-auto d-block"
+							style="max-width: 40%;" th:src="@{'/news/uploads/' + ${noticia.foto}}"
+							th:alt="${noticia.foto}" />
+
+						<p class="text-center" th:text="${noticia.titulo}"></p>
+					</div>
+				</div>
+				<div class="col-sm-8">
+					<div class="position-relative image-hover">
+						<h3 class="font-weight-600" th:text="${noticia.introduccion}">
+						</h3>
+						<p class="fs-15" th:text="${noticia.fecha}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div th:replace="fragments/paginator_nav :: paginator"></div>
+	</div>
+
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

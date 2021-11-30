@@ -1,0 +1,59 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title th:text="${titulo}"></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div class="container" th:fragment="perfil"> 
+	<br>
+		<!-- First Container -->
+		<div class="container-fluid bg-1 text-center">
+			<br><br>
+	  		<h3 class="margin" th:text="${perfil.nombre}"></h3>
+	  		<br>
+	  		<h3>Pintor</h3 >
+	  		<img th:if="${#strings.length(perfil.foto) > 0}" class="rounded mx-auto d-block"
+					style="max-width: 80%;" th:src="@{'/perfil/uploads/' + ${perfil.foto}}" th:alt="${perfil.foto}" />
+		</div>
+		<!-- Second Container -->
+		<div class="container-fluid bg-2 text-center">
+  			<h3 class="margin">¿Quien Soy?</h3>
+  			<p th:text="${perfil.descripcion1}"></p >
+    	</div>
+    	<!-- Third Container (Grid) -->
+		<div class="container-fluid bg-3 text-center">    
+  			<h3 class="margin">Una parte de mi historia </h3>
+  			<br>
+  			<div class="row">
+    			<div class="col-sm-4">
+      				<p th:text="${perfil.descripcion2}"></p >
+    			</div>
+    			<div class="col-sm-4"> 
+      				<p th:text="${perfil.descripcion3}"></p >
+    			</div>
+    			<div class="col-sm-4"> 
+      				<p th:text="${perfil.descripcion4}"></p >
+    			</div>
+    		
+  			</div>
+  			<div class="row">
+  				
+  			<div class="col-sm-4">
+  				<img th:src="@{/img/vistas/foto1.jpeg}" class="img-responsive margin" style="display:inline;width:200;height:200;" alt="puerto">
+  			</div>
+  				
+  			<div class="col-sm-4">
+  				<img th:src="@{/img/vistas/foto2.jpeg}" class="img-responsive margin" style="display:inline;width:200;height:200;"  alt ="mercado">
+  			</div>
+  			<div class="col-sm-4">
+  				<img th:src="@{/img/vistas/foto3.jpeg}" class="img-responsive margin" style="display:inline;width:200;height:200;" alt="feria">
+  			</div>
+  			</div>
+  			<br>
+		</div>
+	</div>
+</body>
+</html>

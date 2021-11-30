@@ -1,0 +1,39 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title th:text="${titulo}"></title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	<!-- Portafolio -->
+	<div class="container text-center my-3" th:fragment="portafolio">
+		<br><br><br>
+		<h2 class="font-weight-light">Portafolio</h2>
+		<div id="portafolio" class="carousel slide carousel-dark text-center" data-bs-ride="carousel">
+			
+			<!-- Objects -->
+			<div class="carousel-inner py-4" role="listbox" >
+				<div class="carousel-item active" >
+					<div class="container" >
+						<div class="row">
+							<div class="col-lg-4" th:each="obra: ${obras}">
+								<div th:replace="fragments/obra_object :: obra_object" >
+								</div>
+								<br><br>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div th:replace ="fragments/paginator_nav :: paginator"> </div>
+		</div>
+	</div>
+
+	<script th:src="@{/js/view_galerry.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
