@@ -1,21 +1,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace ="fragments/public :: head">
+<head th:replace ="layout/public :: head">
 </head >
 
 <body>
 	<!-- Menu -->
-	<header th:replace="fragments/public :: menu"></header>
+	<header th:replace="layout/public :: menu"></header>
 
 	<!-- New Object -->
-	<div class="container " th:replace="fragments/new_object :: post"></div>
+	<div class="container " th:replace="object/noticia :: post"></div>
 
 	<!-- News List -->
-	<div class="container" th:replace="fragments/new_object :: list">
+	<div class="container" th:replace="object/noticia :: list">
 	</div>
 	
 	<!-- Footer -->
-	<footer th:replace="fragments/public :: footer">
+	<footer th:replace="layout/public :: footer">
 	</footer>
 	
 </body>

@@ -1,14 +1,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace ="fragments/service :: head">
+<head th:replace ="layout/service :: head">
 </head >
 <body>
 	
-	<header th:replace ="fragments/service :: menu"></header >
+	<header th:replace ="layout/service :: menu"></header >
 		
 	<div class="container"> 
 	<br><br><br>
-	<!-- Status -->
-		<div th:replace ="fragments/status :: s_status"></div>
 		
 		<div class="container-fluid bg-1 text-center">
 			<br>
@@ -20,7 +18,7 @@
 	  	</div>
 	</div>
 	<!-- Footer -->
-	<footer th:replace ="fragments/service :: footer">
+	<footer th:replace ="layout/service :: footer">
 	</footer>
 	
 	<script th:src="@{/js/view_galerry.js}"></script>

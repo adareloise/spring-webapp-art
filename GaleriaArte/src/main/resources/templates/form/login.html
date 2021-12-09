@@ -1,14 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/public :: head"></head>
+<head th:replace="layout/public :: head"></head>
 
 <body>
-	<header th:replace="fragments/service :: menu"></header>
+	<header th:replace="layout/public :: menu"></header>
 
 	<div class="container">
 		<br><br><br>
-		<div th:replace="fragments/status :: s_status"></div>
-
 		<div class="text-center">
 
 			<div class="card border-primary text-center">
@@ -38,8 +36,7 @@
 		</div>
 	</div>
 
-		<footer th:replace="fragments/service :: footer"></footer>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<footer th:replace="layout/public :: footer"></footer>
 
 </body>
 

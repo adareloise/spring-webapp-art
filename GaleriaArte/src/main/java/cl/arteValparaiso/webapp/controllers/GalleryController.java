@@ -65,7 +65,7 @@ public class GalleryController {
 
 		model.put("obra", obra);
 		model.put("titulo", "Detalle obra: " + obra.getTitulo());
-		return "fragments/obra_object";
+		return "object/obra";
 	}
 	
 	@GetMapping("/create")
@@ -73,7 +73,7 @@ public class GalleryController {
 		Obra obra = new Obra();
 		model.addAttribute("obra", obra);
 		model.addAttribute("titulo", "Crear Obra");
-		return "form/obra_form";
+		return "form/obra";
 	}
 	
 	@PostMapping("/save")
@@ -115,7 +115,7 @@ public class GalleryController {
 	@GetMapping("/edit/{id}")
 	public ModelAndView editar(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		Obra obra = null;
-		ModelAndView mv = new ModelAndView("form/obra_form");
+		ModelAndView mv = new ModelAndView("form/obra");
 
 		if(id > 0) {
 			obra = obraServ.findOne(id);
@@ -133,7 +133,7 @@ public class GalleryController {
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de Obras");
 		model.addAttribute("obras", obraServ.findAll());
-		return "serv/obras_listar";
+		return "serv/listar_obras";
 	}	
 	
 	@GetMapping(value="/delete/{id}")

@@ -1,12 +1,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head>
-	<title th:text="${titulo}"></title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link th:href="@{css/style.css}" rel="stylesheet" type="text/css">
-</head>
+<head th:replace="layout/service :: head"> </head >
 
 <body>
+	
+	<header th:replace="layout/service :: menu"></header>
 
 	<div class="container py-4" th:fragment="post">
 		<br><br><br>
@@ -82,12 +80,13 @@
 				</div>
 			</div>
 		</div>
-		<div th:replace="fragments/paginator_nav :: paginator"></div>
+		<div th:replace="object/paginator_nav :: paginator"></div>
 	</div>
 
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"></script>
+	<footer th:replace="layout/service :: footer"></footer>
+
 </body>
 
 </html>

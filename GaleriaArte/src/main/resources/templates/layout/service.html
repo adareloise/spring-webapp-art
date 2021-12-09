@@ -43,6 +43,11 @@
 				</div>
 			</div>
 		</nav>
+		<br><br>
+		<div class="alert alert-success" role="alert" th:if="${success != null}" th:text="${success}"></div>
+		<div class="alert alert-danger" role="alert" th:if="${error != null}" th:text="${error}"></div>
+		<div class="alert alert-warning" role="alert" th:if="${warning != null}" th:text="${warning}"></div>
+		<div class="alert alert-info" role="alert" th:if="${info != null}" th:text="${info}"></div>
 	</header>
 
 	<!-- Footer -->
@@ -109,8 +114,9 @@
 							<div class="theback py-3 px-3 text-center user">
 								<div class="social-text mt-1">
 									<form id="logoutForm" th:action="@{/logout}" method="post">
-										<button class="btn btn-primary" onclick="document.getElementById('logoutForm').submit();"
-											type="submit">Salir</button >
+										<button class="btn btn-primary"
+											onclick="document.getElementById('logoutForm').submit();"
+											type="submit">Salir</button>
 										<input type="hidden" th:name="${_csrf.parameterName}"
 											th:value="${_csrf.token}" />
 									</form>

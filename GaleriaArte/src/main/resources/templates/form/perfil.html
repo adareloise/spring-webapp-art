@@ -1,10 +1,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/service :: head">
+<head th:replace="layout/service :: head">
 </head >
 
 <body>
 	<!-- Menu -->
-	<div th:replace="fragments/service :: menu">
+	<div th:replace="layout/service :: menu">
 	</div>
 
 	<!-- Form -->
@@ -59,7 +59,7 @@
 	</div>
 
 	<!-- Footer -->
-	<footer th:replace="fragments/service :: footer"> </footer>
+	<footer th:replace="layout/service :: footer"> </footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>

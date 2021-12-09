@@ -78,7 +78,7 @@ public class NewsController {
 		model.put("noticias", noticias);
 		model.put("page", pageRender);
 		
-		return "fragments/new_object";
+		return "object/noticia";
 	}
 
 	@GetMapping("/create")
@@ -86,7 +86,7 @@ public class NewsController {
 		Noticia noticia = new Noticia();
 		model.addAttribute("noticia", noticia);
 		model.addAttribute("titulo", "Crear Noticia");
-		return "form/new_form";
+		return "form/noticia";
 	}
 
 	@PostMapping("/save")
@@ -153,7 +153,7 @@ public class NewsController {
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de Noticias");
 		model.addAttribute("noticias", newServ.findAll());
-		return "serv/news_listar";
+		return "serv/listar_noticias";
 	}
 
 	@GetMapping(value = "/delete/{id}")

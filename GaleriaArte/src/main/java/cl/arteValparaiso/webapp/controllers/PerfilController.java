@@ -59,7 +59,7 @@ public class PerfilController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario de usuarios");
-			return "serv/user_edit";
+			return "object/perfil";
 		}
 		
 		if (!foto.isEmpty()) {
@@ -102,6 +102,6 @@ public class PerfilController {
 		model.addAttribute("perfil", perfil);
 		model.addAttribute("titulo", "Editar Perfil");
 		
-		return "serv/perfil_editar";
+		return "form/perfil";
 	}	
 }
