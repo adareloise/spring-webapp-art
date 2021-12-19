@@ -118,13 +118,6 @@ public class NewsController {
 			noticia.setFoto(uniqueFilename);
 		}
 		String mensajeFlash = (noticia.getId() != null) ? "Noticia editada con éxito!" : "Noticia creada con éxito!";
-		String link = "";
-		
-		for (int i = 17; i < noticia.getLink_video().length(); i++) {
-			link += (noticia.getLink_video().charAt(i));
-		}
-		
-		noticia.setLink_video(link);
 		newServ.save(noticia);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
@@ -135,7 +128,7 @@ public class NewsController {
 	@GetMapping("/edit/{id}")
 	public ModelAndView editar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		Noticia noticia = null;
-		ModelAndView mv = new ModelAndView("form/new_form");
+		ModelAndView mv = new ModelAndView("form/noticia");
 
 		if (id > 0) {
 			noticia = newServ.findOne(id);

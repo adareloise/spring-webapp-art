@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cl.arteValparaiso.webapp.models.entity.Noticia;
 import cl.arteValparaiso.webapp.models.entity.Obra;
 import cl.arteValparaiso.webapp.models.entity.Perfil;
+import cl.arteValparaiso.webapp.models.entity.User;
 import cl.arteValparaiso.webapp.models.service.INewService;
 import cl.arteValparaiso.webapp.models.service.IObraService;
 import cl.arteValparaiso.webapp.models.service.IPerfilService;
+import cl.arteValparaiso.webapp.models.service.IUserService;
 import cl.arteValparaiso.webapp.util.paginator.PageRender;
 
 @Controller
@@ -29,14 +31,18 @@ public class ViewsController {
 	private IObraService obraServ;
 	@Autowired
 	private IPerfilService perfilServ; 
+	@Autowired
+	private IUserService userServ; 
 	
 	@RequestMapping(value = "/biografia", method = RequestMethod.GET)
 	public String biografia(Map<String, Object> model) {
 	
 		Long id = (long) 1;
 		Perfil perfil = perfilServ.findOne(id);
+		User user = userServ.findOne(id);
 		model.put("titulo", "Perfil");
 		model.put("perfil", perfil);
+		model.put("user", user);
 		
 		return "view/biography";
 	}	

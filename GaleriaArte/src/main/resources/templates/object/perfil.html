@@ -11,9 +11,9 @@
 		<!-- First Container -->
 		<div class="container-fluid bg-1 text-center">
 			<br><br>
-	  		<h3 class="margin" th:text="${perfil.nombre}"></h3>
+	  		<h3 class="margin" th:text="${user.nombre}"></h3>
 	  		<br>
-	  		<h3>Pintor</h3 >
+	  		<h3 th:text="${user.profesion}"></h3  >
 	  		<img th:if="${#strings.length(perfil.foto) > 0}" class="rounded mx-auto d-block"
 					style="max-width: 80%;" th:src="@{'/perfil/uploads/' + ${perfil.foto}}" th:alt="${perfil.foto}" />
 		</div>

@@ -47,3 +47,19 @@ $(function validate() {
 	 $('#crear_noticia').validate(noticia_validate);
 
   });
+  
+function getId(link_video) {
+    
+    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = link_video.match(regExp);
+
+    if (match && match[2].length == 11) {
+        return match[2];
+    } else {
+        return 'error';
+    }
+}
+
+var videoId = $('#link_video').val();
+var myId = getId(videoId);
+$('#myVideo').html('<iframe src="//www.youtube.com/embed/' + myId + '" frameborder="0" allowfullscreen></iframe>');

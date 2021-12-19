@@ -17,25 +17,28 @@ public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	private String password; 
-	private String mail;
+	private String nombre;
 	private String telefono;
-	private String ciudad;
+	private String direccion;
 	private String profesion;
+	private String facebook;
+	private String instagram;
+	private String youtube;
 	
 	public User() {
 	}
 
-	public User(Long id, String name, String password, String mail, String telefono, String ciudad, String profesion) {
+	public User(Long id, String nombre, String telefono, String direccion, String profesion, String facebook,
+			String instagram, String youtube) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.mail = mail;
+		this.nombre = nombre;
 		this.telefono = telefono;
-		this.ciudad = ciudad;
+		this.direccion = direccion;
 		this.profesion = profesion;
+		this.facebook = facebook;
+		this.instagram = instagram;
+		this.youtube = youtube;
 	}
 
 	public Long getId() {
@@ -46,28 +49,12 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getTelefono() {
@@ -78,12 +65,12 @@ public class User implements Serializable {
 		this.telefono = telefono;
 	}
 
-	public String getCiudad() {
-		return ciudad;
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public String getProfesion() {
@@ -94,4 +81,27 @@ public class User implements Serializable {
 		this.profesion = profesion;
 	}
 
+	public String getFacebook() {
+		return facebook;
+	}
+
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+
+	public String getInstagram() {
+		return instagram;
+	}
+
+	public void setInstagram(String instagram) {
+		this.instagram = instagram;
+	}
+
+	public String getYoutube() {
+		return youtube;
+	}
+
+	public void setYoutube(String youtube) {
+		this.youtube = youtube;
+	}
 }

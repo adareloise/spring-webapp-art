@@ -4,10 +4,14 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +37,8 @@ import cl.arteValparaiso.webapp.models.service.IUploadFileService;
 @RequestMapping(value ="/gallery", method = RequestMethod.GET)
 public class GalleryController {
 
+	protected final Log logger = LogFactory.getLog(this.getClass());
+	
 	@Autowired
 	private IObraService obraServ;
 	@Autowired 
@@ -130,7 +136,18 @@ public class GalleryController {
 	}
 		
 	@GetMapping("/listar")
-	public String listar(Model model) {
+	public String listar(Model model, Authentication authentication) {
+		
+		if(authentication != null) {
+			logger.info("Hola usuario autenticado, tu username es: ".concat(authentication.getName()));
+		}
+
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		if(auth != null) {
+			logger.info("Utilizando forma estática SecurityContextHolder.getContext().getAuthentication(): Usuario autenticado: ".concat(auth.getName()));
+		}
+		
 		model.addAttribute("titulo", "Listado de Obras");
 		model.addAttribute("obras", obraServ.findAll());
 		return "serv/listar_obras";

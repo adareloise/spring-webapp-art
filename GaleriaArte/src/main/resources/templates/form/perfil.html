@@ -4,8 +4,8 @@
 
 <body>
 	<!-- Menu -->
-	<div th:replace="layout/service :: menu">
-	</div>
+	<header th:replace="layout/service :: menu">
+	</header>
 
 	<!-- Form -->
 	<div class="container">
@@ -20,11 +20,6 @@
 
 		<form id="editar_perfil" th:action="@{/perfil/save}" th:object="${perfil}" method="post" enctype="multipart/form-data">
 
-			<div class="mb-3">
-				<label for="nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
-			</div>
-			
 			<div class="mb-3">
 				<label for="descripcion1" class="form-label">Descripcion 1</label>
 				<textarea class="form-control" id="descripcion1" name="descripcion1" cols="20" rows="5" th:field="*{descripcion1}"></textarea>
