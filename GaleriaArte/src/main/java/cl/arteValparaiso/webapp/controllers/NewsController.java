@@ -78,7 +78,7 @@ public class NewsController {
 		model.put("noticias", noticias);
 		model.put("page", pageRender);
 		
-		return "fragments/new_object";
+		return "object/noticia";
 	}
 
 	@GetMapping("/create")
@@ -86,7 +86,7 @@ public class NewsController {
 		Noticia noticia = new Noticia();
 		model.addAttribute("noticia", noticia);
 		model.addAttribute("titulo", "Crear Noticia");
-		return "form/new_form";
+		return "form/noticia";
 	}
 
 	@PostMapping("/save")
@@ -118,13 +118,6 @@ public class NewsController {
 			noticia.setFoto(uniqueFilename);
 		}
 		String mensajeFlash = (noticia.getId() != null) ? "Noticia editada con éxito!" : "Noticia creada con éxito!";
-		String link = "";
-		
-		for (int i = 17; i < noticia.getLink_video().length(); i++) {
-			link += (noticia.getLink_video().charAt(i));
-		}
-		
-		noticia.setLink_video(link);
 		newServ.save(noticia);
 		status.setComplete();
 		flash.addFlashAttribute("success", mensajeFlash);
@@ -135,7 +128,7 @@ public class NewsController {
 	@GetMapping("/edit/{id}")
 	public ModelAndView editar(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 		Noticia noticia = null;
-		ModelAndView mv = new ModelAndView("form/new_form");
+		ModelAndView mv = new ModelAndView("form/noticia");
 
 		if (id > 0) {
 			noticia = newServ.findOne(id);
@@ -153,7 +146,7 @@ public class NewsController {
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Listado de Noticias");
 		model.addAttribute("noticias", newServ.findAll());
-		return "serv/news_listar";
+		return "serv/listar_noticias";
 	}
 
 	@GetMapping(value = "/delete/{id}")

@@ -1,16 +1,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace ="fragments/public :: head">
+<head th:replace ="layout/public :: head">
 </head >
 <body>
 	<!-- Menu -->
-	<header th:replace ="fragments/public :: menu">
+	<header th:replace ="layout/public :: menu">
 	</header>
 	
 	<!-- Biography -->
-	<div th:replace ="fragments/perfil_object :: perfil"></div >
+	<div th:replace ="object/perfil :: perfil"></div >
 	
 	<!-- Footer -->
-	<footer th:replace ="fragments/public :: footer"></footer>
+	<footer th:replace ="layout/public :: footer"></footer>
 	
 </body>
 </html>

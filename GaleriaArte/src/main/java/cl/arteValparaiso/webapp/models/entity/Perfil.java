@@ -18,7 +18,6 @@ public class Perfil implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nombre;
 	
 	@Lob
 	private String descripcion1;
@@ -34,11 +33,10 @@ public class Perfil implements Serializable{
 	public Perfil() {
 	}
 
-	public Perfil(Long id, String nombre, String descripcion1, String descripcion2, String descripcion3,
+	public Perfil(Long id, String descripcion1, String descripcion2, String descripcion3,
 			String descripcion4, String foto) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
 		this.descripcion1 = descripcion1;
 		this.descripcion2 = descripcion2;
 		this.descripcion3 = descripcion3;
@@ -52,14 +50,6 @@ public class Perfil implements Serializable{
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public String getDescripcion1() {

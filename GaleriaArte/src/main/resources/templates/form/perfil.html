@@ -1,11 +1,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/service :: head">
+<head th:replace="layout/service :: head">
 </head >
 
 <body>
 	<!-- Menu -->
-	<div th:replace="fragments/service :: menu">
-	</div>
+	<header th:replace="layout/service :: menu">
+	</header>
 
 	<!-- Form -->
 	<div class="container">
@@ -20,11 +20,6 @@
 
 		<form id="editar_perfil" th:action="@{/perfil/save}" th:object="${perfil}" method="post" enctype="multipart/form-data">
 
-			<div class="mb-3">
-				<label for="nombre" class="form-label">Nombre</label>
-				<input type="text" class="form-control" id="nombre" name="nombre" th:field="*{nombre}">
-			</div>
-			
 			<div class="mb-3">
 				<label for="descripcion1" class="form-label">Descripcion 1</label>
 				<textarea class="form-control" id="descripcion1" name="descripcion1" cols="20" rows="5" th:field="*{descripcion1}"></textarea>
@@ -59,7 +54,7 @@
 	</div>
 
 	<!-- Footer -->
-	<footer th:replace="fragments/service :: footer"> </footer>
+	<footer th:replace="layout/service :: footer"> </footer>
 
 	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>

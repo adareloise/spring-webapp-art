@@ -1,14 +1,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/service :: head">
+<head th:replace="layout/service :: head">
 </head >
 
 <body>
 	<!-- header -->
-	<header th:replace="fragments/service :: menu"></header>
+	<header th:replace="layout/service :: menu"></header>
 
 	<div class="container py-4">
-		<br><br><br>
 	
 		<div class="card bg-light">
 
@@ -16,7 +15,6 @@
 
 			<!-- status -->
 			<div class="card-body">
-				<div th:replace="fragments/status :: s_status"></div>
 	
 				<div class="card-title">
 					<p><a th:href="@{/gallery/create}" class="btn btn-success btn-xs">crear obra</a></p>
@@ -54,7 +52,7 @@
 	</div>
 
 	<!-- Footer -->
-	<footer th:replace="fragments/service :: footer"></footer>
+	<footer th:replace="layout/service :: footer"></footer>
 
 	<script type="text/javascript" charset="utf8"
 		src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>

@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.arteValparaiso.webapp.models.entity.User;
 import cl.arteValparaiso.webapp.models.service.IUserService;
 
 @Controller
-@RequestMapping(value ="/users", method = RequestMethod.GET)
+@SessionAttributes("user")
+@RequestMapping(value ="/user", method = RequestMethod.GET)
 public class UserController {
 
 	@Autowired
@@ -34,20 +37,21 @@ public class UserController {
 		User user = new User();
 		model.addAttribute("user", user);
 		model.addAttribute("titulo", "Formulario de Cliente");
-		return "user_create";
+		return "form/user";
 	}
 	
 	@PostMapping("/save")
-	public String guardar(@Validated  User user, BindingResult result, Model model, SessionStatus status) {
+	public String guardar(@Validated  User user, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
 		
 		if(result.hasErrors()) {
-			model.addAttribute("titulo", "Formulario de Cliente");
-			return "user_form";
+			model.addAttribute("titulo", "Formulario de Usuario");
+			return "form/user";
 		}
 		
 		userService.save(user);
+		flash.addFlashAttribute("success", "Usuario editado correctamente");
 		status.setComplete();
-		return "redirect:/users/listar";
+		return "redirect:/service";
 	}
 	
 	@GetMapping(value="/edit/{id}")
@@ -58,12 +62,12 @@ public class UserController {
 		if(id > 0) {
 			user = userService.findOne(id);
 		} else {
-			return "redirect:/users/listar";
+			return "redirect:/service";
 		}
 		model.addAttribute("user", user);
 		model.addAttribute("titulo", "Formulario de Usuario");
 		
-		return "user_form";
+		return "form/user";
 	}
 		
 	@GetMapping(value="/delete/{id}")
@@ -72,6 +76,6 @@ public class UserController {
 		if(id > 0) {
 			userService.delete(id);
 		}
-		return "redirect:/users/listar";
+		return "redirect:/service";
 	}
 }

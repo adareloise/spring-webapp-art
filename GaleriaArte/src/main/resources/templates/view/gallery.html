@@ -1,15 +1,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace ="fragments/public :: head">
-</head  >
+
+<head th:replace ="layout/public :: head">
+</head>
 <body>
 	<!-- Menu -->
-	<header th:replace ="fragments/public :: menu"></header>
+	<header th:replace ="layout/public :: menu"></header>
 		
 	<!-- Portafolio -->
-	<div th:replace ="fragments/carousel_object :: portafolio"></div>
+	<div th:replace ="object/gallery :: gellery"></div>
 	
 	<!-- Footer -->
-	<footer th:replace ="fragments/public :: footer"></footer>
+	<footer th:replace ="layout/public :: footer"></footer>
 	
 </body>>
 </html>
