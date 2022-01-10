@@ -13,26 +13,21 @@
 		<br><br><br>
 		<h1 th:text="${titulo}" class="text-center"></h1>
 
-		<form id="contact" action="#">
-
-			<div class="mb-3">
-				<label class="form-label" for="name">Nombre</label>
-				<input class="form-control" id="name" name="name" type="text" />
-			</div>
+		<form id="contact" th:action="@{/contact/send}" th:object="${mail}" method="post">
 
 			<div class="mb-3">
 				<label class="form-label" for="emailAddress">Email</label>
-				<input class="form-control" id="emailAddress" name="emailAddress" type="text" />
+				<input class="form-control" id="emailAddress" name="emailAddress"  type="text" th:field="*{mailTo}" />
 			</div>
-
+			
 			<div class="mb-3">
-				<label class="form-label" for="telephone">Telefono</label>
-				<input class="form-control" id="telephone" name="telephone" />
+				<label class="form-label" for="name">Motivo</label>
+				<input class="form-control" id="motivo" name="motivo" type="text" th:field="*{mailSubject}" />
 			</div>
-
+			
 			<div class="mb-3">
 				<label class="form-label" for="mensaje">Mensaje</label>
-				<textarea class="form-control" id="mensaje" name="mensaje" cols="20" rows="5"></textarea>
+				<textarea class="form-control" id="mensaje" name="mensaje" cols="20" rows="5" th:field="*{mailContent}"></textarea>
 			</div>
 
 			<button id="guardar" type="submit" class="btn btn-primary">Enviar</button>
