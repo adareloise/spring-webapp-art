@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,7 +58,24 @@ public class ViewsController {
 		Noticia noticia = list.get(list.size() - 1);
 		
 				
-		PageRender<Noticia> pageRender =  new PageRender<Noticia>("/news/{id}", noticias);	
+		PageRender<Noticia> pageRender =  new PageRender<Noticia>("/noticias", noticias);	
+		
+		model.put("noticia", noticia);
+		model.put("titulo", "Noticias");
+		model.put("noticias", noticias);
+		model.put("page", pageRender);
+		
+		return "view/news";
+	}
+	
+	@RequestMapping(value = "/noticias/{id}", method=RequestMethod.GET)
+	public String blogId(@RequestParam(name="page", defaultValue="0") int page,@PathVariable(value = "id") Long id, Map<String, Object> model) {
+			
+		Pageable pageRequest = PageRequest.of(page, 3);
+		Page<Noticia> noticias = newServ.findAll(pageRequest);
+		Noticia noticia = newServ.findOne(id);
+						
+		PageRender<Noticia> pageRender =  new PageRender<Noticia>("/noticias", noticias);	
 		
 		model.put("noticia", noticia);
 		model.put("titulo", "Noticias");

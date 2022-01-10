@@ -1,13 +1,18 @@
 package cl.arteValparaiso.webapp.models.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "news")
@@ -19,7 +24,11 @@ public class Noticia implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String titulo;
-	private String fecha;
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "create_at")
+	private Date createAt;
+	
 	private String introduccion;
 	@Lob
 	private String redaccion;
@@ -30,12 +39,12 @@ public class Noticia implements Serializable {
 	public Noticia () {
 	}
 
-	public Noticia(Long id, String titulo, String fecha, String introduccion, String redaccion, String conclusion,
+	public Noticia(Long id, String titulo, String introduccion, String redaccion, String conclusion,
 			String link_video, String foto) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
-		this.fecha = fecha;
+		
 		this.introduccion = introduccion;
 		this.redaccion = redaccion;
 		this.conclusion = conclusion;
@@ -43,6 +52,11 @@ public class Noticia implements Serializable {
 		this.foto = foto;
 	}
 
+	@PrePersist
+	public void prePersist() {
+		createAt = new Date();
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,14 +71,6 @@ public class Noticia implements Serializable {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
-	}
-
-	public String getFecha() {
-		return fecha;
-	}
-
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
 	}
 
 	public String getIntroduccion() {
@@ -105,5 +111,13 @@ public class Noticia implements Serializable {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
 }

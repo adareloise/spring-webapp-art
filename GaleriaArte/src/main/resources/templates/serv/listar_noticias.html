@@ -34,7 +34,7 @@
 									th:text="${noticia.id}"></a></td>
 							<td th:text="${noticia.titulo}"></td>
 							<td th:text="${noticia.introduccion}"></td>
-							<td th:text="${noticia.fecha}"></td>
+							<td th:text="${noticia.createAt}"></td>
 							<td>
 								<a th:href="@{/news/edit/}+ ${noticia.id}">
 									<img th:src="@{/img/icons/editar.png}" class="img-responsive img-circle margin"
