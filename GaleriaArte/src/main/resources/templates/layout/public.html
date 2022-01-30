@@ -16,13 +16,19 @@
 	<header th:fragment="menu">
 		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 			<div class="container-fluid">
-				<a class="navbar-brand" href="#">Fernando Concha</a>
-				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-					<span class="navbar-toggler-icon"></span>
-				</button>
 
+				<a class="navbar-brand" href="#">Fernando Concha</a>
+					
+				<div class="collapse navbar-collapse" id="mynavbar" sec:authorize="isAuthenticated()">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item mx-1"><a class="btn btn-outline-success"
+						th:href="@{/service}">Servicios <i class="fa fa-expeditedssl"></i></a>
+						</li>
+					</ul>
+				</div>
+				
 				<div class="collapse navbar-collapse" id="mynavbar">
-					<ul class="navbar-nav me-auto">
+					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/biografia}">Biografía</a>
 						</li>
@@ -32,8 +38,6 @@
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/galeria}">Galeria</a>
 						</li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/contact/info}">Contacto</a>
 						</li>
@@ -41,7 +45,7 @@
 				</div>
 			</div>
 		</nav>
-		<br><br>
+		<br><br><br>
 		<div class="alert alert-success" role="alert" th:if="${success != null}" th:text="${success}"></div>
 		<div class="alert alert-danger" role="alert" th:if="${error != null}" th:text="${error}"></div>
 		<div class="alert alert-warning" role="alert" th:if="${warning != null}" th:text="${warning}"></div>

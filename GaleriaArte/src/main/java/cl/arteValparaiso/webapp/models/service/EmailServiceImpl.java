@@ -30,8 +30,10 @@ public class EmailServiceImpl implements MailService {
             mimeMessageHelper.setSubject(mail.getMailSubject());
             mimeMessageHelper.setFrom(new InternetAddress(mail.getMailFrom(), "artevalparaiso.cl"));
             mimeMessageHelper.setTo(mail.getMailTo());
-            mimeMessageHelper.setText(mail.getMailContent());
- 
+            mimeMessageHelper.setText("He recibido el siguiente mensaje:"+"\n"+"\n"+
+            mail.getMailContent()+"\n"
+            +"\n"+"Saludos"+"\n"+"Fernando Concha");
+            
             mailSender.send(mimeMessageHelper.getMimeMessage());
  
         } catch (MessagingException e) {

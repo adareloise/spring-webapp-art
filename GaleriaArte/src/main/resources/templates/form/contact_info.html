@@ -9,8 +9,7 @@
 
 
 	<!-- Form -->
-	<div class="container">
-		<br><br><br>
+	<div class="container py-4">
 		<h1 th:text="${titulo}" class="text-center"></h1>
 
 		<form id="contact" th:action="@{/contact/send}" th:object="${mail}" method="post">
