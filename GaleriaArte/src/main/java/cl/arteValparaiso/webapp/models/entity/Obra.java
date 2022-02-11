@@ -21,18 +21,20 @@ public class Obra implements Serializable{
 	private String dimension;
 	private String tecnica;
 	private String disponibilidad;
+	private String posicion;
 	private String foto;
 
 	public Obra() {
 	}
 
-	public Obra(Long id, String titulo, String dimension, String tecnica, String disponibilidad, String foto) {
+	public Obra(Long id, String titulo, String dimension, String tecnica, String disponibilidad,String posicion, String foto) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.dimension = dimension;
 		this.tecnica = tecnica;
 		this.disponibilidad = disponibilidad;
+		this.setPosicion(posicion);
 		this.foto = foto;
 	}
 
@@ -82,5 +84,13 @@ public class Obra implements Serializable{
 
 	public void setFoto (String foto) {
 		this.foto = foto;
+	}
+
+	public String getPosicion() {
+		return posicion;
+	}
+
+	public void setPosicion(String posicion) {
+		this.posicion = posicion;
 	}
 }

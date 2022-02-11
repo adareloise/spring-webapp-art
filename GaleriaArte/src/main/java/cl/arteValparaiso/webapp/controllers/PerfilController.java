@@ -1,12 +1,6 @@
 package cl.arteValparaiso.webapp.controllers;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,15 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cl.arteValparaiso.webapp.models.entity.Perfil;
 import cl.arteValparaiso.webapp.models.service.IPerfilService;
-import cl.arteValparaiso.webapp.models.service.IUploadFileService;
 
 @Controller
 @SessionAttributes("perfil")
@@ -33,55 +24,22 @@ public class PerfilController {
 	
 	@Autowired
 	private IPerfilService perfilServ; 
-
-	@Autowired 
-	private IUploadFileService uploadFileService;
 	
-	@GetMapping(value = "/uploads/{filename:.+}")
-	public ResponseEntity<Resource> verFoto(@PathVariable String filename) {
-		
-		Resource recurso = null;
-
-		try {
-			recurso = uploadFileService.load(filename, "perfil");
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"")
-				.body(recurso);
+	@GetMapping("/listar") 
+	public String listar(Model model) {
+		model.addAttribute("titulo", "Listado de Idiomas");
+		model.addAttribute("perfiles", perfilServ.findAll());
+		return "serv/listar_perfiles";
 	}
-
+	
 	@PostMapping("/save")
-	public String guardar(@Validated  Perfil perfil, BindingResult result, Model model, @RequestParam("file") MultipartFile foto,
+	public String guardar(@Validated  Perfil perfil, BindingResult result, Model model, 
 			RedirectAttributes flash, SessionStatus status) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("titulo", "Formulario de usuarios");
 			return "object/perfil";
 		}
-		
-		if (!foto.isEmpty()) {
-
-			if (perfil.getId() != null && perfil.getId() > 0 && perfil.getFoto() != null
-					&& perfil.getFoto().length() > 0) {
-
-				uploadFileService.delete(perfil.getFoto(), "perfil");
-			}
-
-			String uniqueFilename = null;
-			try {
-				uniqueFilename = uploadFileService.copy(foto, "perfil");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-			flash.addFlashAttribute("info", "Has subido correctamente '" + uniqueFilename + "'");
-
-			perfil.setFoto(uniqueFilename);
-		}
-		
 		perfilServ.save(perfil);
 		status.setComplete();
 		flash.addFlashAttribute("success", "Perfil editado correctamente");

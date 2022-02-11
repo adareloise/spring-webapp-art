@@ -22,7 +22,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/", "/img/**", "/css/**", "/js/**", "/biografia/**", "/noticias/**", "/galeria/**", "/contact/**", 
-				"/gallery/uploads/**", "/news/uploads/**", "/perfil/uploads/**").permitAll()
+				"/gallery/uploads/**", "/news/uploads/**", "/user/uploads/**").permitAll()
 		.antMatchers("/service/**").hasAnyRole("ADMIN")
 		.antMatchers("/news/**").hasAnyRole("ADMIN")
 		.antMatchers("/gallery/**").hasAnyRole("ADMIN")
@@ -47,7 +47,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
 		UserBuilder users = User.builder().passwordEncoder(encoder::encode);
 		
 		build.inMemoryAuthentication()
-		.withUser(users.username("admin").password("12345").roles("ADMIN", "USER"))
-		.withUser(users.username("fernando").password("arteValpa369").roles("ADMIN","USER"));
+		.withUser(users.username("admin").password("%I@u369711").roles("ADMIN", "USER"))
+		.withUser(users.username("fconcha").password("arteValpa369936").roles("ADMIN","USER"));
 	}
 }

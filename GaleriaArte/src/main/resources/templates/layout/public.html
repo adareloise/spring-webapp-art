@@ -9,6 +9,7 @@
 	<link th:href="@{/css/icon.css}" rel="stylesheet">
 	<link th:href="@{/css/style.css}" rel="stylesheet">
 	<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet">
+   	<link th:href="@{/css/main.css}" type="text/css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -16,9 +17,11 @@
 	<header th:fragment="menu">
 		<nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
 			<div class="container-fluid">
-
-				<a class="navbar-brand" href="#">Fernando Concha</a>
-					
+				<a class="navbar-brand" th:href="@{/}">Fernando Concha</a>
+					 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
+      					<span class="navbar-toggler-icon"></span>
+    				</button>
+				
 				<div class="collapse navbar-collapse" id="mynavbar" sec:authorize="isAuthenticated()">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item mx-1"><a class="btn btn-outline-success"
@@ -30,7 +33,7 @@
 				<div class="collapse navbar-collapse" id="mynavbar">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/biografia}">Biografía</a>
+							<a class="nav-link" th:href="@{/biografia/1}">Biografía</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/noticias}">Noticias</a>
@@ -64,7 +67,9 @@
 								<div class="social-icon"> <i class="fa fa-facebook fa-2x"></i> </div>
 							</div>
 							<div class="theback py-3 px-3 text-center facebook">
-								<div class="social-text mt-1"> <small class="font-weight-bold">Facebook</small> </div>
+								<a class="hiper" th:href="${user.facebook}">
+									<div class="social-text mt-1"> <small class="font-weight-bold">Facebook</small> </div>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -76,7 +81,9 @@
 								<div class="social-icon"> <i class="fa fa-instagram fa-2x"></i> </div>
 							</div>
 							<div class="theback py-3 px-3 text-center instagram">
-								<div class="social-text mt-1"> <small class="font-weight-bold">Instagram</small> </div>
+								<a class="hiper" th:href="${user.instagram}">
+									<div class="social-text mt-1"> <small class="font-weight-bold">Instagram</small> </div>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -88,7 +95,9 @@
 								<div class="social-icon"> <i class="fa fa-youtube fa-2x"></i> </div>
 							</div>
 							<div class="theback py-3 px-3 text-center youtube">
-								<div class="social-text mt-1"> <small class="font-weight-bold">Youtube</small> </div>
+								<a class="hiper" th:href="${user.youtube}">
+									<div class="social-text mt-1"> <small class="font-weight-bold">Youtube</small> </div>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -113,7 +122,7 @@
 							</div>
 							<div class="theback py-3 px-3 text-center user">
 								<div class="social-text mt-1"> <small class="font-weight-bold"><a
-											th:href="@{/login}">Ingresar</a></small> </div>
+											th:href="@{/login}" class="hiper">Ingresar</a></small> </div>
 							</div>
 						</div>
 					</div>
@@ -149,7 +158,7 @@
 					sec:authentication="principal.authorities"></span>
 			</p>
 			<div class="text-center p-3" style="background-color: rgb(0, 0, 0);">
-				© 2021 Copyright:
+				© 2022 Copyright:
 				<a class="text-white" href="https://artevalparaiso.cl/">Artevalparaiso.cl</a>
 			</div>
 		</div>

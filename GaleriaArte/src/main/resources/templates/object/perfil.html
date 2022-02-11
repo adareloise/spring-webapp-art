@@ -13,34 +13,74 @@
 
 			<!-- Primer Container -->
 			<div class="card py-4">
+				<div class="row">
+					<div class="col align-self-end">
+						<div class="row text-center">
+							<div class="col col-xs">
+								<a th:href="@{/biografia/1}">
+									<img th:src="@{/img/icons/chile.png}" class="img-responsive img-circle margin"
+										style="display:inline" alt="delete" width="30" height="30">
+								</a>
+							</div>
+							<div class="col col-xs">
+								<a th:href="@{/biografia/2}">
+									<img th:src="@{/img/icons/united-kingdom.png}"
+										class="img-responsive img-circle margin" style="display:inline" alt="delete"
+										width="30" height="30">
+								</a>
+							</div>
+							<div class="col col-xs">
+								<a th:href="@{/biografia/3}">
+									<img th:src="@{/img/icons/france.png}" class="img-responsive img-circle margin"
+										style="display:inline" alt="delete" width="30" height="30">
+								</a>
+							</div>
+							<div class="col col-xs">
+								<a th:href="@{/biografia/4}">
+									<img th:src="@{/img/icons/germany.png}" class="img-responsive img-circle margin"
+										style="display:inline" alt="delete" width="30" height="30">
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="card-header">
 					<h1 class="text-center" th:text="${user.nombre}"></h1>
 				</div>
 				<div class="card-body text-center">
-				<img th:if="${#strings.length(perfil.foto) > 0}" class="rounded mx-auto d-block" style="max-width: 80%;"
-					th:src="@{'/perfil/uploads/' + ${perfil.foto}}" th:alt="${perfil.foto}" />
-
-				<h3 th:text="${user.profesion}"></h3>
+					<img th:if="${#strings.length(user.foto) > 0}" class="rounded mx-auto d-block"
+						style="max-width: 80%;" th:src="@{'/user/uploads/' + ${user.foto}}" th:alt="${user.foto}" />
+					<h3 th:if="${perfil.id == 1}" th:text="${user.profesion}"></h3>
+					<h3 th:if="${perfil.id == 2}" >Painter</h3>
+					<h3 th:if="${perfil.id == 3}" >Peintre</h3>
+					<h3 th:if="${perfil.id == 4}" >Maler</h3>
 				</div>
-					
+
 			</div>
 
 			<!-- Second Container -->
-			<div class="card bg-light py-4"> 
-			<div class="card-body">
-			
-			<div class="card-header text-white bg-dark py-4">
-					<h3 class="text-center">¿Quien Soy?</h3>
+			<div class="card bg-light py-4">
+				<div class="card-body">
+
+					<div class="card-header text-white bg-dark py-4">
+						<h3 class="text-center"  th:if="${perfil.id == 1}" >¿Quien Soy?</h3>
+						<h3 class="text-center"  th:if="${perfil.id == 2}" >Who I am?</h3>
+						<h3 class="text-center"  th:if="${perfil.id == 3}" >Qui suis-je?</h3>
+						<h3 class="text-center"  th:if="${perfil.id == 4}" >Wer bin Ich?</h3>
+					</div>
+					<div class="card-body text-center">
+						<p th:text="${perfil.descripcion1}"></p>
+					</div>
 				</div>
-				<div class="card-body text-center">
-					<p th:text="${perfil.descripcion1}"></p>
-				</div>
-			</div>
 			</div>
 
 			<!-- Third Container (Grid) -->
 			<div class="container-fluid bg-dark text-white text-center py-4">
-				<h3 class="margin">Una parte de mi historia </h3>
+				<h3 class="margin"  th:if="${perfil.id == 1}">Parte de mi historia </h3>
+				<h3 class="margin"  th:if="${perfil.id == 2}">Part of my story</h3>
+				<h3 class="margin"  th:if="${perfil.id == 3}">Une partie de mon histoire </h3>
+				<h3 class="margin"  th:if="${perfil.id == 4}">Eil meiner Geschichte </h3>
 				<br>
 				<div class="row py-4">
 					<div class="col-sm-4">
@@ -56,16 +96,14 @@
 				<!-- Forth Container (Grid) -->
 				<div class="row py-4">
 					<div class="col-sm-4">
-						<img th:src="@{/img/vistas/foto1.jpeg}" class="img-perfil"
-							alt="puerto">
+						<img th:src="@{/img/vistas/foto1.jpeg}" class="img-perfil" alt="puerto">
 					</div>
 
 					<div class="col-sm-4">
 						<img th:src="@{/img/vistas/foto2.jpeg}" class="img-perfil" alt="mercado">
 					</div>
 					<div class="col-sm-4">
-						<img th:src="@{/img/vistas/foto3.jpeg}" class="img-perfil"
-							alt="feria">
+						<img th:src="@{/img/vistas/foto3.jpeg}" class="img-perfil" alt="feria">
 					</div>
 				</div>
 				<br>

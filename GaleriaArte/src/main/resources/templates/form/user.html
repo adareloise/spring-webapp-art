@@ -18,6 +18,7 @@
 				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
 			</ul>
 		</div>
+		
 		<form id="editar_user" th:action="@{/user/save}" th:object="${user}" method="post" enctype="multipart/form-data">
 
 			<div class="mb-3">
@@ -38,10 +39,12 @@
 				<label for="profesion" class="form-label">Profesion</label>
 				<input  class="form-control" id="profesion" name="profesion" th:field="*{profesion}"></input>
 			</div>
+			
 			<div class="mb-3">
 				<label for="facebook" class="form-label">Facebook</label>
 				<input  class="form-control" id="facebook" name="facebook" th:field="*{facebook}"></input>
 			</div>
+			
 			<div class="mb-3">
 				<label for="instagram" class="form-label">Instagram</label>
 				<input  class="form-control" id="instagram" name="instagram" th:field="*{instagram}"></input>
@@ -56,6 +59,8 @@
 				<label for="file" class="form-label">Imagen de Perfil</label>
 				<input class="form-control" type="file" id="file" name="file">
 			</div>
+			
+			
 
 			<div class="mb-3">
 				<button id="guardar" type="submit" class="btn btn-primary">Guardar</button>

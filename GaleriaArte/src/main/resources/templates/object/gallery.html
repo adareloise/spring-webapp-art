@@ -1,29 +1,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head></head>
 
 <body>
 	<!-- Portafolio -->
 	<div class="container text-center my-3 py-4" th:fragment="gellery">
 		<h2 class="font-weight-light">Portafolio</h2>
-		<div id="portafolio" class="carousel slide carousel-dark text-center" data-bs-ride="carousel">
-			<!-- Objects -->
-			<div class="carousel-inner py-4" role="listbox" >
-				<div class="carousel-item active" >
-					<div class="container" >
-						<div class="row">
-							<div class="col-lg-4" th:each="obra: ${obras}">
-								<div th:replace="object/obra :: obra" >
-								</div>
-								<br><br>
-							</div>
-						</div>
-					</div>
+		<!-- Objects -->
+		<div class="container py-4">
+			<div class="images-wrapper" >
+				<div class="img-cont" th:each="obra : ${obras}" id="gallery-container"
+				 th:if="${obra.posicion == 'horizontal'}">
+					<a th:href="@{/obra-view/}+ ${obra.id}">
+						<img th:if="${#strings.length(obra.foto) > 0}" class="image"
+							style="display:inline;width:100%;" th:src="@{'/gallery/uploads/' + ${obra.foto}}"
+							data-full="#" th:alt="${obra.foto}" />
+					</a >
 				</div>
+
+				<div class="img-cont" th:each="obra : ${obras}"
+					th:if="${obra.posicion == 'vertical'}">
+					<a th:href="@{/obra-view/}+ ${obra.id}">
+						<img th:if="${#strings.length(obra.foto) > 0}" class="image"
+							style="display:inline;width:100%;" th:src="@{'/gallery/uploads/' + ${obra.foto}}"
+							th:alt="${obra.foto}" />
+					</a>
+				</div>		
 			</div>
-			
-			<div th:replace ="object/paginator_nav :: paginator"> </div>
-		</div>
+		</div >
+		
+		<div class="full-image-container">
+        	<img class="full-image" src="" alt="">
+        	<p class="image-title"></p>
+    	</div>
+		
+		<div th:replace="object/paginator_nav :: paginator"> </div>
 	</div>
+
+
+
 
 	<script th:src="@{/js/view_galerry.js}"></script>
 </body>

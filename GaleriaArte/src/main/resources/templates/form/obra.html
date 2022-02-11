@@ -49,6 +49,16 @@
 				<label for="file" class="form-label">Imagen</label>
 				<input class="form-control" type="file" id="file" name="file">
 			</div>
+			
+				<div class="mb-3">
+				<label for="posicion" class="form-label">Posicion</label>
+				<select class="form-control" id="posicion" name="posicion" th:field="*{posicion}">
+					<option value="" disabled selected>Seleccione disponibilidad</option>
+					<option value="horizontal" id="no">Horizontal</option>
+					<option value="vertical" id="si">Vertical</option>
+					
+				</select>
+			</div>
 
 			<div class="mb-3">
 				<br><br>

@@ -28,20 +28,20 @@ public class Perfil implements Serializable{
 	@Lob
 	private String descripcion4;
 	
-	private String  foto;
+	private String  idioma;
 	
 	public Perfil() {
 	}
 
 	public Perfil(Long id, String descripcion1, String descripcion2, String descripcion3,
-			String descripcion4, String foto) {
+			String descripcion4, String  idioma) {
 		super();
 		this.id = id;
 		this.descripcion1 = descripcion1;
 		this.descripcion2 = descripcion2;
 		this.descripcion3 = descripcion3;
 		this.descripcion4 = descripcion4;
-		this.foto = foto;
+		this.idioma = idioma;
 	}
 
 	public Long getId() {
@@ -84,16 +84,15 @@ public class Perfil implements Serializable{
 		this.descripcion4 = descripcion4;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	public String getIdioma() {
+		return idioma;
+	}
+
+	public void setIdioma(String idioma) {
+		this.idioma = idioma;
+	}
 	}

@@ -1,0 +1,51 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/service :: head"></head>
+
+<body>
+	<!-- Menu -->
+	<header th:replace="layout/service :: menu"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-light">
+
+			<div class="card-header" th:text="${titulo}"></div>
+
+			<div class="card-body">
+				<table id="table_id" class="display">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Idioma</th>
+							<th>Introduccion</th>
+							<th>Acciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="perfil: ${perfiles}">
+							<td th:text="${perfil.id}"></td>
+							<td th:text="${perfil.idioma}"></td>
+							<td th:text="${perfil.descripcion1}"></td>
+							<td>
+								<a th:href="@{/perfil/edit/}+ ${perfil.id}">
+									<img th:src="@{/img/icons/editar.png}" class="img-responsive img-circle margin"
+										style="display:inline" alt="editar" width="30" height="30">
+								</a>
+							</td>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer th:replace="layout/service :: footer"></footer>
+
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+	<script th:src="@{/js/listar_dtable.js}"></script>
+
+</body>
+
+</html>
